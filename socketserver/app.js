@@ -24,7 +24,7 @@ var port = process.env.PORT || 3000;
 const corsOptions = {
   credentials: true, // This is important.
   origin: (origin, callback) => {
-    if (cors_whitelist.includes(origin))
+    if (cors_whitelist.includes(origin) || true)
       return callback(null, true)
 
     callback(new Error('Not allowed by CORS'));
@@ -33,10 +33,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
-
 io.on('connection', function (socket) {
   socket.on('cat_configuration', function (msg) {
     io.emit('cat_configuration', msg);
@@ -44,5 +40,5 @@ io.on('connection', function (socket) {
 });
 
 http.listen(port, host, function () {
-  console.log('listening on *:' + port);
+  console.log('listening on ' + host + ':' + port);
 });
