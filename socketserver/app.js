@@ -1,6 +1,6 @@
 var app = require('express')();
 var http = require('http').Server(app);
-var host = 'hackeps.salmeronmoya.com';
+var host = 'http://hackeps.salmeronmoya.com';
 const io = require("socket.io")(http, {
   cors: {
     origin: host,
