@@ -7,5 +7,6 @@ do
         password) password=${OPTARG};;
     esac
 done
+ssh $username@$
 touch /tmp/hola_gina_ha_funcionado_el_travis.txt
 echo "Finalizando"
