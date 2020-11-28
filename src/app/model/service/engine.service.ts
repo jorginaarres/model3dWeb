@@ -4,7 +4,6 @@ import { Injectable, ElementRef, OnDestroy, NgZone } from '@angular/core';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {ModelConfiguration} from '../modelConfiguration';
 
-
 @Injectable({ providedIn: 'root' })
 export class EngineService implements OnDestroy {
   private canvas: HTMLCanvasElement;
@@ -98,6 +97,12 @@ export class EngineService implements OnDestroy {
       this.mesh = new THREE.Mesh( geometry, material );
       this.scene.add(this.mesh);
     });
+
+    const floorGeometry = new THREE.BoxBufferGeometry(100,100,0);
+    const texture = new THREE.TextureLoader().load( '../../assets/floorTexture.jpg' ); 
+    const floorMaterial = new THREE.MeshBasicMaterial( {map: texture} );
+    const floor = new THREE.Mesh(floorGeometry,floorMaterial);
+    this.scene.add(floor);
 
     this.animate();
   }
