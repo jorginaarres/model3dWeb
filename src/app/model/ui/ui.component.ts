@@ -23,8 +23,6 @@ export class UiComponent implements OnInit {
   constructor(private engServ: EngineService, private formBuilder: FormBuilder, private socketService: SocketService) { }
 
   ngOnInit(): void {
-    this.engServ.changeModel('../../assets/cat.stl');
-
     const modelConfiguration: ModelConfiguration = {
       color: '#00FF00',
       scale: 1

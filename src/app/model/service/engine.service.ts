@@ -3,6 +3,7 @@ import * as THREESTLLoader from 'three-stl-loader';
 import { Injectable, ElementRef, OnDestroy, NgZone } from '@angular/core';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {ModelConfiguration} from '../modelConfiguration';
+import {Vector3} from "three";
 
 
 @Injectable({ providedIn: 'root' })
@@ -104,7 +105,7 @@ export class EngineService implements OnDestroy {
 
   public updateModelConfiguration(config: ModelConfiguration): void {
     this.mesh.material = new THREE.MeshPhongMaterial( { color: config.color} );
-    this.mesh.geometry.scale(config.scale, config.scale, config.scale);
+    this.mesh.scale.set(config.scale, config.scale, config.scale);
     this.animate();
   }
 
