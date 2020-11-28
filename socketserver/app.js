@@ -10,7 +10,7 @@ var port = process.env.PORT || 3000;
 var host = 'hackeps.salmeronmoya.com';
 
 
-app.use(cors())
+app.use(cors({ origin: 'https://hackeps.salmeronmoya.com', credentials: true }))
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
