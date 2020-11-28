@@ -1,11 +1,18 @@
 var app = require('express')();
 var http = require('http').Server(app);
-const io = require('socket.io')(http);
+var host = 'hackeps.salmeronmoya.com';
+const io = require("socket.io")(http, {
+  cors: {
+    origin: host,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true
+  }
+});
 var cors = require('cors')
 var port = process.env.PORT || 3000;
-var host = 'hackeps.salmeronmoya.com';
 
-const whitelist = ['https://hackeps.salmeronmoya.com','http://hackeps.salmeronmoya.com'];
+const whitelist = ['https://hackeps.salmeronmoya.com','http://hackeps.salmeronmoya.com', '*'];
 const corsOptions = {
   credentials: true, // This is important.
   origin: (origin, callback) => {
