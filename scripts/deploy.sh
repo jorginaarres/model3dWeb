@@ -7,6 +7,5 @@ do
         password) password=${OPTARG};;
     esac
 done
-echo "Username: $username";
-echo "Age: $password";
-
+touch /tmp/hola_gina_ha_funcionado_el_travis.txt
+echo "Finalizando"
