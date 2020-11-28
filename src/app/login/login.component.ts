@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -8,10 +9,13 @@ import {FormBuilder, Validators} from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  hide = true;
   formGroup: any;
+  name = new FormControl('', [Validators.required]);
+  error = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+
+  constructor(private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
@@ -20,4 +24,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  onSubmit(formGroup: any): void {
+
+    if ((this.name.value === formGroup.value.pass) && this.name.value !== '' && formGroup.value.pass !== '' ){
+      this.router.navigate(['menu']);
+    }
+    else { this.error = true; }
+  }
 }

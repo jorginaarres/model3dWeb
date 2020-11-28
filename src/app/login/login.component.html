@@ -1,14 +1,21 @@
 <mat-card class="center" > Login
-  <form [formGroup]="formGroup" class="example-form">
+  <form [formGroup]="formGroup" class="example-form" (submit)="onSubmit(formGroup)">
     <mat-form-field class="example-full-width">
       <mat-label>Username</mat-label>
-      <input formControlName="name" matInput placeholder="Username" value="">
+      <input [formControl]="name" required matInput placeholder="Username" value="">
     </mat-form-field>
 
     <mat-form-field class="example-form">
-      <mat-label>Password</mat-label>
-      <input formControlName="pass" type="password" matInput>
+      <mat-label>Enter your password</mat-label>
+      <input required formControlName="pass" type="password" matInput [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
     </mat-form-field>
-    <button routerLink="/menu" mat-raised-button color="accent">Accent</button>
+    <mat-error *ngIf="error">Invalid username or password</mat-error>
+
+    <button type='submit' mat-raised-button color="accent">Access</button>
   </form>
+
+
 </mat-card>
