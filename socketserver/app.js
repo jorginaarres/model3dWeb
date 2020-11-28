@@ -1,6 +1,6 @@
 var app = require('express')();
 var http = require('http').Server(app);
-const io = require('socket.io')(server, {
+const io = require('socket.io')(http, {
   cors: {
     origin: '*',
   }
