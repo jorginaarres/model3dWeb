@@ -5,7 +5,12 @@ var cors = require('cors')
 var port = process.env.PORT || 3000;
 var host = 'hackeps.salmeronmoya.com';
 
-app.use(cors())
+var corsOptions = {
+  origin: 'http://hackeps.salmeronmoya.com',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.use(cors(corsOptions))
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
