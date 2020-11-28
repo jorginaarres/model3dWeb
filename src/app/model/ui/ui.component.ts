@@ -18,6 +18,8 @@ export class UiComponent implements OnInit {
   models: any[] = [
     {name: 'Cat', path: '../../assets/cat.stl'},
     {name: 'Dragon', path: '../../assets/dragon.stl'},
+    {name: 'Bird', path: '../../assets/bird.stl'},
+    {name: 'Ship', path: '../../assets/ship.stl'},
   ];
 
   constructor(private engServ: EngineService, private formBuilder: FormBuilder, private socketService: SocketService) { }
