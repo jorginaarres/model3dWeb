@@ -1,0 +1,30 @@
+<div class="menu">
+  <form [formGroup]="formGroup" class="my-form" (ngSubmit)="submit()">
+    <mat-form-field  style="width: 100%" appearance="fill">
+      <mat-label>Model</mat-label>
+      <mat-select formControlName="model" [(value)]="selected" (selectionChange)="changeModel($event.value)">
+        <mat-option *ngFor="let model of models" [value]="model.path">
+          {{model.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div fxLayout="row">
+      <mat-form-field fxFlex="30" appearance="fill">
+        <mat-label>R</mat-label>
+        <input formControlName="red" type="number" matInput>
+        <mat-hint>0-255</mat-hint>
+      </mat-form-field>
+      <mat-form-field  fxFlexOffset="5" fxFlex="30" appearance="fill">
+        <mat-label>G</mat-label>
+        <input formControlName="green" type="number" matInput>
+        <mat-hint>0-255</mat-hint>
+      </mat-form-field>
+      <mat-form-field fxFlexOffset="5"  fxFlex="30" appearance="fill">
+        <mat-label>B</mat-label>
+        <input formControlName="blue" type="number" matInput>
+        <mat-hint>0-255</mat-hint>
+      </mat-form-field>
+    </div>
+    <button type="submit" class="center" mat-raised-button color="accent">Apply</button>
+  </form>
+</div>

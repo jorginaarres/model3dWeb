@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { EngineService } from './engine.service';
+import { EngineService } from '../service/engine.service';
 
 @Component({
   selector: 'app-engine',

@@ -1,0 +1,24 @@
+.menu {
+  background-color: gray ;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: max-content;
+  padding: 25px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+
+.center{
+  margin: 10px auto 0 auto;
+  display: block;
+}
+
+input {
+  color: white;
+}
+
+mat-form-field {
+  margin: 5px 0;
+}
