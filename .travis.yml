@@ -1,3 +1,5 @@
+before_install:
+  - gem install rake
 deploy:
   # deploy master to production
   - provider: script

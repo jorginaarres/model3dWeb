@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 while getopts username:password: flag
 do
@@ -9,3 +9,4 @@ do
 done
 echo "Username: $username";
 echo "Age: $password";
+
