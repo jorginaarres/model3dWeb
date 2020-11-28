@@ -3,7 +3,7 @@ var http = require('http').Server(app);
 var host = 'hackeps.salmeronmoya.com';
 const io = require("socket.io")(http, {
   cors: {
-    origin: 'http://hackeps.salmeronmoya.com',
+    origin: ['http://hackeps.salmeronmoya.com', 'http://localhost', '*'],
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
@@ -12,14 +12,14 @@ const io = require("socket.io")(http, {
 var cors = require('cors')
 var port = process.env.PORT || 3000;
 
-const whitelist = ['http://hackeps.salmeronmoya.com', '*'];
+const whitelist = ['http://hackeps.salmeronmoya.com', 'http://localhost', '*'];
 const corsOptions = {
   credentials: true, // This is important.
   origin: (origin, callback) => {
-    if(whitelist.includes(origin))
+    if (whitelist.includes(origin))
       return callback(null, true)
 
-      callback(new Error('Not allowed by CORS'));
+    callback(new Error('Not allowed by CORS'));
   }
 }
 
