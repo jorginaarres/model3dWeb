@@ -1,6 +1,10 @@
 var app = require('express')();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: '*',
+  }
+});
 var cors = require('cors')
 var port = process.env.PORT || 3000;
 var host = 'hackeps.salmeronmoya.com';
