@@ -1,6 +1,6 @@
 language: minimal
 before_install:
-  - gem install rake
+  - gem install rake sshpass
 deploy:
   # deploy master to production
   - provider: script
