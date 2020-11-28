@@ -1,13 +1,13 @@
 <mat-card class="center" > Login
-  <form class="example-form">
+  <form [formGroup]="formGroup" class="example-form">
     <mat-form-field class="example-full-width">
       <mat-label>Username</mat-label>
-      <input matInput placeholder="Username" value="">
+      <input formControlName="name" matInput placeholder="Username" value="">
     </mat-form-field>
 
     <mat-form-field class="example-form">
       <mat-label>Password</mat-label>
-      <textarea matInput placeholder="password"></textarea>
+      <input formControlName="pass" type="password" matInput>
     </mat-form-field>
     <button routerLink="/menu" mat-raised-button color="accent">Accent</button>
   </form>

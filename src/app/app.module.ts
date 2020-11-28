@@ -11,12 +11,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatCardModule} from '@angular/material/card';
 import { MatButtonModule} from '@angular/material/button';
 import { ModelComponent } from './model/model.component';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import {UiComponent} from './model/ui/ui.component';
 import {FlexModule} from '@angular/flex-layout';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {ReactiveFormsModule} from '@angular/forms';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'http://hackeps.salmeronmoya.com:3000', options: {} };
 
 
 @NgModule({
@@ -34,6 +36,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    SocketIoModule.forRoot(config),
     MatCardModule,
     MatButtonModule,
     FlexModule,

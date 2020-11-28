@@ -94,9 +94,8 @@ export class EngineService implements OnDestroy {
     loader.load(path, geometry => {
       const material = new THREE.MeshPhongMaterial
       ( { color: this.modelConfig.color} );
-      // geometry.scale = this.modelConfig.scale;
-
-      // this.mesh = new THREE.Mesh( geometry, material );
+      geometry.scale = this.modelConfig.scale;
+      this.mesh = new THREE.Mesh( geometry, material );
       this.scene.add(this.mesh);
     });
 
@@ -105,8 +104,7 @@ export class EngineService implements OnDestroy {
 
   public updateModelConfiguration(config: ModelConfiguration): void {
     this.mesh.material = new THREE.MeshPhongMaterial( { color: config.color} );
-
-    // this.mesh.geometry.scale(config.scale, config.scale, config.scale);
+    this.mesh.geometry.scale(config.scale, config.scale, config.scale);
     this.animate();
   }
 

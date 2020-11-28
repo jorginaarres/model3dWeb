@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {EngineService} from '../service/engine.service';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ModelConfiguration} from '../modelConfiguration';
+import {SocketService} from "../service/socket.service";
 
 
 @Component({
@@ -19,17 +20,23 @@ export class UiComponent implements OnInit {
     {name: 'Dragon', path: '../../assets/dragon.stl'},
   ];
 
-  constructor(private engServ: EngineService, private formBuilder: FormBuilder) { }
+  constructor(private engServ: EngineService, private formBuilder: FormBuilder, private socketService: SocketService) { }
 
   ngOnInit(): void {
     this.engServ.changeModel('../../assets/cat.stl');
 
     const modelConfiguration: ModelConfiguration = {
       color: '#00FF00',
+      scale: 1
     };
 
     this.engServ.setConfiguration(modelConfiguration);
+    this.socketService.setConfiguration(modelConfiguration);
+    this.changeModel('../../assets/cat.stl');
+  }
 
+
+  changeModel(model: any): void {
     this.formGroup = this.formBuilder.group({
       model: ['../../assets/cat.stl', [Validators.required]],
       red: [0, [Validators.required]],
@@ -38,11 +45,6 @@ export class UiComponent implements OnInit {
       scale: [1, Validators.required]
     });
 
-    this.changeModel('../../assets/cat.stl');
-  }
-
-
-  changeModel(model: any): void {
     this.engServ.changeModel(model);
   }
 
@@ -54,6 +56,7 @@ export class UiComponent implements OnInit {
 
     const modelConfiguration: ModelConfiguration = {
       color: '#' + r + g + b,
+      scale: s
     };
 
     this.engServ.updateModelConfiguration(modelConfiguration);
