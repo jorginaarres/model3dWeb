@@ -12,7 +12,7 @@ const io = require("socket.io")(http, {
 var cors = require('cors')
 var port = process.env.PORT || 3000;
 
-const whitelist = ['http://hackeps.salmeronmoya.com', 'http://localhost', '*'];
+const whitelist = ['http://hackeps.salmeronmoya.com', 'http://localhost', 'http://localhost:3000', '*'];
 const corsOptions = {
   credentials: true, // This is important.
   origin: (origin, callback) => {

@@ -12,6 +12,6 @@ export class SocketService {
   }
 
   setConfiguration(config: ModelConfiguration): void {
-    this.socket.emit('cat_configuration', config);
+    this.socket.emit('cat_configuration', 'go');
   }
 }
