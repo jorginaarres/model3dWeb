@@ -1,8 +1,8 @@
 <mat-card class="center" > Login
-  <form [formGroup]="formGroup" class="example-form" (submit)="onSubmit(formGroup)">
+  <form [formGroup]="formGroup" class="example-form" (submit)="onSubmit(formGroup)"  *ngIf="!submit">
     <mat-form-field class="example-full-width">
       <mat-label>Username</mat-label>
-      <input [formControl]="name" required matInput placeholder="Username" value="">
+      <input formControlName="name" required matInput placeholder="Username" value="">
     </mat-form-field>
 
     <mat-form-field class="example-form">
@@ -16,6 +16,6 @@
 
     <button type='submit' mat-raised-button color="accent">Access</button>
   </form>
-
+  <mat-spinner *ngIf="submit" ></mat-spinner>
 
 </mat-card>

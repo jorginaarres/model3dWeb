@@ -11,9 +11,8 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   hide = true;
   formGroup: any;
-  name = new FormControl('', [Validators.required]);
   error = false;
-
+  submit = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router) { }
 
@@ -24,11 +23,23 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(formGroup: any): void {
+  setDelay(): void {
+   console.log('delay') ;
+  }
 
-    if ((this.name.value === formGroup.value.pass) && this.name.value !== '' && formGroup.value.pass !== '' ){
-      this.router.navigate(['menu']);
-    }
-    else { this.error = true; }
+  onSubmit(formGroup: any): void {
+    this.submit = true;
+    setTimeout(() => {
+      this.submit = false;
+      console.log('Just did something...');
+      if ((formGroup.value.name === formGroup.value.pass) && formGroup.value.name !== '' && formGroup.value.pass !== '' ){
+        this.router.navigate(['menu']);
+      }
+      else {
+        this.error = true;
+      }
+    }, 500);
+
+
   }
 }
