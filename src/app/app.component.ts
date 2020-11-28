@@ -7,5 +7,4 @@ import {Scene} from 'three';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
 }
