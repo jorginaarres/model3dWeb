@@ -1,16 +1,22 @@
 var app = require('express')();
 var http = require('http').Server(app);
-const io = require('socket.io')(http, {
-  cors: {
-    origin: '*',
-  }
-});
+const io = require('socket.io')(http);
 var cors = require('cors')
 var port = process.env.PORT || 3000;
 var host = 'hackeps.salmeronmoya.com';
 
+const whitelist = ['https://hackeps.salmeronmoya.com','http://hackeps.salmeronmoya.com'];
+const corsOptions = {
+  credentials: true, // This is important.
+  origin: (origin, callback) => {
+    if(whitelist.includes(origin))
+      return callback(null, true)
 
-app.use(cors({ origin: 'https://hackeps.salmeronmoya.com', credentials: false }))
+      callback(new Error('Not allowed by CORS'));
+  }
+}
+
+app.use(cors(corsOptions))
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
