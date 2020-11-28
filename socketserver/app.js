@@ -2,6 +2,7 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
+var host = 'hackeps.salmeronmoya.com';
 
 app.use(cors())
 
@@ -15,6 +16,6 @@ io.on('connection', function (socket) {
   });
 });
 
-http.listen(port, function () {
+http.listen(port, host, function () {
   console.log('listening on *:' + port);
 });
