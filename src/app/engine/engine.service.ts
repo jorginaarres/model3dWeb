@@ -35,7 +35,7 @@ export class EngineService implements OnDestroy {
 
     // camera
     this.camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.01, 10000 );
-    this.camera.position.set( 113, 111, 113 );
+    this.camera.position.set( 0, -113, 113 );
     this.camera.aspect = window.innerWidth / window.innerHeight;
     this.scene.add( new THREE.AmbientLight( 0x222222 ) );
     this.scene.add( this.camera ); // required, because we are adding a light as a child of the camera
@@ -49,7 +49,7 @@ export class EngineService implements OnDestroy {
 
     const STLLoader = new THREESTLLoader(THREE);
     const loader = new STLLoader();
-    loader.load('../../assets/dragon.stl', geometry => {
+    loader.load('../../assets/cat.stl', geometry => {
       const material = new THREE.MeshPhongMaterial( { color: 0x00FF00 } );
 
       const mesh = new THREE.Mesh( geometry, material );
