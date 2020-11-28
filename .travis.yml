@@ -1,4 +1,4 @@
-language: node_js
+language: minimal
 before_install:
   - gem install rake
 deploy:
