@@ -3,8 +3,8 @@ var http = require('http').Server(app);
 var host = 'hackeps.salmeronmoya.com';
 const io = require("socket.io")(http, {
   cors: {
-    origin: ['http://hackeps.salmeronmoya.com', 'http://localhost', '*'],
-    methods: ["GET", "POST"],
+    origin: ['http://hackeps.salmeronmoya.com', 'http://localhost:4200', '*'],
+    methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
   }

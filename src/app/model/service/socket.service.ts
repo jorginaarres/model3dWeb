@@ -6,7 +6,7 @@ import {ModelConfiguration} from '../modelConfiguration';
   providedIn: 'root'
 })
 export class SocketService {
-  config = this.socket.fromEvent<ModelConfiguration>('cat_configuration');
+  // config = this.socket.fromEvent<ModelConfiguration>('cat_configuration');
 
   constructor(private socket: Socket) {
   }

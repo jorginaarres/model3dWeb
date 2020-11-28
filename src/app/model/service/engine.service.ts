@@ -94,15 +94,15 @@ export class EngineService implements OnDestroy {
     loader.load(path, geometry => {
       const material = new THREE.MeshPhongMaterial
       ( { color: this.modelConfig.color} );
-      geometry.scale = this.modelConfig.scale;
       this.mesh = new THREE.Mesh( geometry, material );
+      this.mesh.scale.set(this.modelConfig.scaleX, this.modelConfig.scaleY, this.modelConfig.scaleZ);
       this.scene.add(this.mesh);
     });
 
     const floorGeometry = new THREE.BoxBufferGeometry(100,100,0);
-    const texture = new THREE.TextureLoader().load( '../../assets/floorTexture.jpg' ); 
+    const texture = new THREE.TextureLoader().load( '../../assets/floorTexture.jpg' );
     const floorMaterial = new THREE.MeshBasicMaterial( {map: texture} );
-    const floor = new THREE.Mesh(floorGeometry,floorMaterial);
+    const floor = new THREE.Mesh(floorGeometry, floorMaterial);
     this.scene.add(floor);
 
     this.animate();
@@ -110,7 +110,11 @@ export class EngineService implements OnDestroy {
 
   public updateModelConfiguration(config: ModelConfiguration): void {
     this.mesh.material = new THREE.MeshPhongMaterial( { color: config.color} );
-    this.mesh.scale.set(config.scale, config.scale, config.scale);
+    this.mesh.scale.set(config.scaleX, config.scaleY, config.scaleZ);
+    this.mesh.rotateX(config.rotateX * (Math.PI / 180));
+    this.mesh.rotateY(config.rotateY * (Math.PI / 180));
+    this.mesh.rotateZ(config.rotateZ * (Math.PI / 180));
+    this.mesh.position.set(config.translateX, config.translateY, config.translateZ);
     this.animate();
   }
 
