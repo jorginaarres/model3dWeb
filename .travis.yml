@@ -1,0 +1,8 @@
+before_install:
+  - gem install rake
+deploy:
+  # deploy master to production
+  - provider: script
+    script: bash scripts/deploy.sh -username $SSH_USER -password $SSH_PWD
+    on:
+      branch: master
