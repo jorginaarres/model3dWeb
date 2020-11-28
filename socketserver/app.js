@@ -2,12 +2,14 @@ var app = require('express')();
 var http = require('http').Server(app);
 var host = 'hackeps.salmeronmoya.com';
 const cors_whitelist = [
-      'http://hackeps.salmeronmoya.com:80',
-      'http://hackeps.salmeronmoya.com:3000',
-      'http://localhost:80',
-      'http://localhost:3000',
-      'http://localhost:4200', '*'
-    ];
+  'http://hackeps.salmeronmoya.com',
+  'http://hackeps.salmeronmoya.com:80',
+  'http://hackeps.salmeronmoya.com:3000',
+  'http://localhost',
+  'http://localhost:80',
+  'http://localhost:3000',
+  'http://localhost:4200', '*'
+];
 const io = require("socket.io")(http, {
   cors: {
     origin: cors_whitelist,
