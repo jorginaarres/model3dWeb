@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "model3dWeb"
+    }
+  },
+  "defaultProject": "model3dWeb",
+  "cli": {
+    "analytics": false
+  }
 }
