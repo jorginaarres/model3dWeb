@@ -1,28 +1,13 @@
 # Model3dWeb [![Build Status](https://travis-ci.com/jorginaarres/model3dWeb.svg?branch=master)](https://travis-ci.com/jorginaarres/model3dWeb)
 
+Projecte presentat per donar solució als reptes conjunts d'invelion i d'origen.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+Model3dWeb presenta una plataforma formada per una aplicació web i una App multiplataforma per a móbil.
 
-## Development server
+El sistema permet la visualització i edicicó colaborativa de models 3D carregats en el sistema, que poden ser editats des de múltiples dispositius simultàniament.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Membres de l'equip
+* Jorgina Arrés Cardona
+* Víctor Tomàs Rodriguez
+* Juan Salmerón Moya
+* Quim Làzro Gel
