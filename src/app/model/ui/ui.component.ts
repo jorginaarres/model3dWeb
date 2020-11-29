@@ -63,8 +63,8 @@ export class UiComponent implements OnInit {
     this.engServ.changeModel(model);
   }
 
-  get getFormGroupControls() { 
-    return this.formGroup.controls; 
+  get getFormGroupControls() {
+    return this.formGroup.controls;
   }
 
   submit(): void {
@@ -100,7 +100,7 @@ export class UiComponent implements OnInit {
       translateY: newTranslateYValue,
       translateZ: newTranslateZValue,
     };
-
+    this.socketService.setConfiguration(modelConfiguration);
     this.engServ.updateModelConfiguration(modelConfiguration);
   }
 }
