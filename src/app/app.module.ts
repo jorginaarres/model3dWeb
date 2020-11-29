@@ -20,7 +20,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule, MAT_PROGRESS_SPINNER_DEFAULT_OPTIONS} from '@angular/material/progress-spinner';
 
-const config: SocketIoConfig = { url: 'http://hackeps.salmeronmoya.com:3000', options: {} };
+const config: SocketIoConfig = { url: 'http://hackeps.salmeronmoya.com:80', options: {} };
 
 
 @NgModule({

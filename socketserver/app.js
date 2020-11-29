@@ -1,6 +1,10 @@
-var app = require('express')();
-var http = require('http').Server(app);
 var host = 'hackeps.salmeronmoya.com';
+var port = process.env.PORT || 80;
+var express = require('express');
+const app = express();
+app.use(express.static(process.cwd()+"/dist/model3dWeb/"));
+var http = require('http').Server(app);
+
 const cors_whitelist = [
   'http://hackeps.salmeronmoya.com',
   'http://hackeps.salmeronmoya.com:80',
@@ -10,6 +14,7 @@ const cors_whitelist = [
   'http://localhost:3000',
   'http://localhost:4200', '*'
 ];
+
 const io = require("socket.io")(http, {
   cors: {
     origin: cors_whitelist,
@@ -18,9 +23,8 @@ const io = require("socket.io")(http, {
     credentials: true
   }
 });
-var cors = require('cors')
 
-var port = process.env.PORT || 3000;
+var cors = require('cors')
 const corsOptions = {
   credentials: true, // This is important.
   origin: (origin, callback) => {
@@ -37,6 +41,10 @@ io.on('connection', function (socket) {
   socket.on('cat_configuration', function (msg) {
     io.emit('cat_configuration', msg);
   });
+});
+
+app.get('/', (req,res) => {
+  res.sendFile(process.cwd()+"/dist/model3dWeb/index.html")
 });
 
 http.listen(port, host, function () {
