@@ -1,4 +1,4 @@
-var host = 'hackeps.salmeronmoya.com';
+var host = 'localhost';
 var port = process.env.PORT || 80;
 var express = require('express');
 const app = express();
@@ -16,7 +16,7 @@ const cors_whitelist = [
 ];
 
 const io = require("socket.io")(http, {
-  transport: 'websocket',
+  transports: ['websocket'],
   cors: {
     origin: cors_whitelist,
     methods: ["GET", "POST", "OPTIONS"],
