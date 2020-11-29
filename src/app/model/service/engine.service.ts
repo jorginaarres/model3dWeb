@@ -3,7 +3,6 @@ import * as THREESTLLoader from 'three-stl-loader';
 import { Injectable, ElementRef, OnDestroy, NgZone } from '@angular/core';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {ModelConfiguration} from '../modelConfiguration';
-import {Vector3} from "three";
 
 @Injectable({ providedIn: 'root' })
 export class EngineService implements OnDestroy {
@@ -32,18 +31,17 @@ export class EngineService implements OnDestroy {
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color( 0xBDBDBD );
 
-    // camera
+    // Set camera on isometric sight
     this.camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.01, 10000 );
     this.camera.position.set( 0, -120, 120 );
     this.camera.aspect = window.innerWidth / window.innerHeight;
     this.scene.add( new THREE.AmbientLight( 0x222222 ) );
-    this.scene.add( this.camera ); // required, because we are adding a light as a child of the camera
+    this.scene.add( this.camera );
 
-    // lights
+    // Scene white lights
     const light = new THREE.PointLight( 0xffffff, 0.8 );
     this.camera.add( light );
 
-    // controls
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
     this.animate();

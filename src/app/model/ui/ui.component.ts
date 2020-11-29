@@ -4,17 +4,17 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {ModelConfiguration} from '../modelConfiguration';
 import {SocketService} from '../service/socket.service';
 
-
 @Component({
   selector: 'app-ui',
   templateUrl: './ui.component.html',
   styleUrls: ['./ui.component.scss']
 })
+
 export class UiComponent implements OnInit {
 
   selected: any;
   formGroup: any;
-  submitted=false;
+  submitted=false; //Avoids checking null values on the form
 
   models: any[] = [
     {name: 'Cat', path: '../../assets/cat.stl'},
@@ -23,7 +23,7 @@ export class UiComponent implements OnInit {
     {name: 'Ship', path: '../../assets/ship.stl'},
   ];
 
-  constructor(private engServ: EngineService, private formBuilder: FormBuilder, private socketService: SocketService) { }
+  constructor(private engServ: EngineService, private formBuilder: FormBuilder, private socketService: SocketService) {}
 
   ngOnInit(): void {
     const modelConfiguration: ModelConfiguration = {
@@ -38,12 +38,10 @@ export class UiComponent implements OnInit {
       translateY: 0,
       translateZ: 0,
     };
-
     this.engServ.setConfiguration(modelConfiguration);
     this.socketService.setConfiguration(modelConfiguration);
     this.changeModel('../../assets/cat.stl');
   }
-
 
   changeModel(model: any): void {
     this.formGroup = this.formBuilder.group({
@@ -65,39 +63,42 @@ export class UiComponent implements OnInit {
     this.engServ.changeModel(model);
   }
 
-  get f() { return this.formGroup.controls; }
+  get getFormGroupControls() { 
+    return this.formGroup.controls; 
+  }
 
   submit(): void {
     this.submitted=true
     if (this.formGroup.invalid) {
       return;
     }
-    const r = this.formGroup.get('red').value.toString(16).padStart(2, '0').toUpperCase();
-    const g = this.formGroup.get('green').value.toString(16).padStart(2, '0').toUpperCase();
-    const b = this.formGroup.get('blue').value.toString(16).padStart(2, '0').toUpperCase();
-    const sx = parseFloat(this.formGroup.get('scaleX').value);
-    const sy = parseFloat(this.formGroup.get('scaleY').value);
-    const sz = parseFloat(this.formGroup.get('scaleZ').value);
+    const newRedValue = this.formGroup.get('red').value.toString(16).padStart(2, '0').toUpperCase();
+    const newGreenValue = this.formGroup.get('green').value.toString(16).padStart(2, '0').toUpperCase();
+    const newBlueValue = this.formGroup.get('blue').value.toString(16).padStart(2, '0').toUpperCase();
 
-    const rx = parseFloat(this.formGroup.get('rotateX').value);
-    const ry = parseFloat(this.formGroup.get('rotateY').value);
-    const rz = parseFloat(this.formGroup.get('rotateZ').value);
+    const newScaleXValue = parseFloat(this.formGroup.get('scaleX').value);
+    const newScaleYValue = parseFloat(this.formGroup.get('scaleY').value);
+    const newScaleZValue = parseFloat(this.formGroup.get('scaleZ').value);
 
-    const tx = parseFloat(this.formGroup.get('translateX').value);
-    const ty = parseFloat(this.formGroup.get('translateY').value);
-    const tz = parseFloat(this.formGroup.get('translateZ').value);
+    const newRotateXValue = parseFloat(this.formGroup.get('rotateX').value);
+    const newRotateYValue = parseFloat(this.formGroup.get('rotateY').value);
+    const newRotateZValue = parseFloat(this.formGroup.get('rotateZ').value);
+
+    const newTranslateXValue = parseFloat(this.formGroup.get('translateX').value);
+    const newTranslateYValue = parseFloat(this.formGroup.get('translateY').value);
+    const newTranslateZValue = parseFloat(this.formGroup.get('translateZ').value);
 
     const modelConfiguration: ModelConfiguration = {
-      color: '#' + r + g + b,
-      scaleX: sx,
-      scaleY: sy,
-      scaleZ: sz,
-      rotateX: rx,
-      rotateY: ry,
-      rotateZ: rz,
-      translateX: tx,
-      translateY: ty,
-      translateZ: tz,
+      color: '#' + newRedValue + newGreenValue + newBlueValue,
+      scaleX: newScaleXValue,
+      scaleY: newScaleYValue,
+      scaleZ: newScaleZValue,
+      rotateX: newRotateXValue,
+      rotateY: newRotateYValue,
+      rotateZ: newRotateZValue,
+      translateX: newTranslateXValue,
+      translateY: newTranslateYValue,
+      translateZ: newTranslateZValue,
     };
 
     this.engServ.updateModelConfiguration(modelConfiguration);

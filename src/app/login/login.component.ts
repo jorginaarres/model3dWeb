@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
 
@@ -23,15 +23,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  setDelay(): void {
-   console.log('delay') ;
-  }
-
   onSubmit(formGroup: any): void {
     this.submit = true;
     setTimeout(() => {
       this.submit = false;
-      console.log('Just did something...');
       if ((formGroup.value.name === formGroup.value.pass) && formGroup.value.name !== '' && formGroup.value.pass !== '' ){
         this.router.navigate(['menu']);
       }
