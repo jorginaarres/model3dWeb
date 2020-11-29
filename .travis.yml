@@ -1,4 +1,8 @@
 language: minimal
+addons:
+  apt:
+    packages:
+    - sshpass
 before_install:
   - gem install rake
 deploy:

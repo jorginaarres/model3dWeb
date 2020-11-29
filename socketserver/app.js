@@ -1,22 +1,35 @@
-var app = require('express')();
+var host = 'localhost';
+var port = process.env.PORT || 80;
+var express = require('express');
+const app = express();
+app.use(express.static(process.cwd()+"/dist/model3dWeb/"));
 var http = require('http').Server(app);
-var host = 'hackeps.salmeronmoya.com';
+
+const cors_whitelist = [
+  'http://hackeps.salmeronmoya.com',
+  'http://hackeps.salmeronmoya.com:80',
+  'http://hackeps.salmeronmoya.com:3000',
+  'http://localhost',
+  'http://localhost:80',
+  'http://localhost:3000',
+  'http://localhost:4200', '*'
+];
+
 const io = require("socket.io")(http, {
+  transports: ['websocket','polling'],
   cors: {
-    origin: ['http://hackeps.salmeronmoya.com', 'http://localhost:4200', '*'],
+    origin: cors_whitelist,
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
   }
 });
-var cors = require('cors')
-var port = process.env.PORT || 3000;
 
-const whitelist = ['http://hackeps.salmeronmoya.com', 'http://localhost', 'http://localhost:3000', '*'];
+var cors = require('cors')
 const corsOptions = {
   credentials: true, // This is important.
   origin: (origin, callback) => {
-    if (whitelist.includes(origin))
+    if (cors_whitelist.includes(origin) || true)
       return callback(null, true)
 
     callback(new Error('Not allowed by CORS'));
@@ -25,16 +38,16 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
-
 io.on('connection', function (socket) {
   socket.on('cat_configuration', function (msg) {
     io.emit('cat_configuration', msg);
   });
 });
 
+app.get('/', (req,res) => {
+  res.sendFile(process.cwd()+"/dist/model3dWeb/index.html")
+});
+
 http.listen(port, host, function () {
-  console.log('listening on *:' + port);
+  console.log('listening on ' + host + ':' + port);
 });

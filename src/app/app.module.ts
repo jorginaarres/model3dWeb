@@ -18,8 +18,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {ReactiveFormsModule} from '@angular/forms';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule, MAT_PROGRESS_SPINNER_DEFAULT_OPTIONS} from '@angular/material/progress-spinner';
 
-const config: SocketIoConfig = { url: 'localhost:3000', options: {} };
+const config: SocketIoConfig = { url: 'http://hackeps.salmeronmoya.com:80', options: {transports: ['websocket']} };
 
 
 @NgModule({
@@ -43,7 +44,8 @@ const config: SocketIoConfig = { url: 'localhost:3000', options: {} };
     FlexModule,
     MatSelectModule,
     MatOptionModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
