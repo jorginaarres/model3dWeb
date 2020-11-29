@@ -1,5 +1,5 @@
 var host = 'hackeps.salmeronmoya.com';
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 80;
 var express = require('express');
 const app = express();
 app.use(express.static(process.cwd()+"/dist/model3dWeb/"));
