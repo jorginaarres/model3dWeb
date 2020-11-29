@@ -16,7 +16,7 @@ const cors_whitelist = [
 ];
 
 const io = require("socket.io")(http, {
-  transports: ['websocket'],
+  transports: ['websocket','polling'],
   cors: {
     origin: cors_whitelist,
     methods: ["GET", "POST", "OPTIONS"],
