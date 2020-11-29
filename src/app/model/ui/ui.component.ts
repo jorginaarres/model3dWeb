@@ -14,6 +14,7 @@ export class UiComponent implements OnInit {
 
   selected: any;
   formGroup: any;
+  submitted=false;
 
   models: any[] = [
     {name: 'Cat', path: '../../assets/cat.stl'},
@@ -45,24 +46,30 @@ export class UiComponent implements OnInit {
   changeModel(model: any): void {
     this.formGroup = this.formBuilder.group({
       model: ['../../assets/cat.stl', [Validators.required]],
-      red: [0, [Validators.required]],
-      green: [255, [Validators.required]],
-      blue: [0, Validators.required],
-      scaleX: [1, Validators.required],
-      scaleY: [1, Validators.required],
-      scaleZ: [1, Validators.required],
-      rotateX: [0, Validators.required],
-      rotateY: [0, Validators.required],
-      rotateZ: [0, Validators.required],
-      translateX: [0, Validators.required],
-      translateY: [0, Validators.required],
-      translateZ: [0, Validators.required]
+      red: [0, [Validators.required,Validators.min(0),Validators.max(255)]],
+      green: [255, [Validators.required,Validators.min(0),Validators.max(255)]],
+      blue: [0, [Validators.required,Validators.min(0),Validators.max(255)]],
+      scaleX: [1, [Validators.required,Validators.min(0),Validators.max(4)]],
+      scaleY: [1, [Validators.required,Validators.min(0),Validators.max(4)]],
+      scaleZ: [1, [Validators.required,Validators.min(0),Validators.max(4)]],
+      rotateX: [0, [Validators.required,Validators.min(0),Validators.max(360)]],
+      rotateY: [0, [Validators.required,Validators.min(0),Validators.max(360)]],
+      rotateZ: [0, [Validators.required,Validators.min(0),Validators.max(360)]],
+      translateX: [0, [Validators.required,Validators.min(0),Validators.max(10)]],
+      translateY: [0, [Validators.required,Validators.min(0),Validators.max(10)]],
+      translateZ: [0, [Validators.required,Validators.min(0),Validators.max(10)]]
     });
 
     this.engServ.changeModel(model);
   }
 
+  get f() { return this.formGroup.controls; }
+
   submit(): void {
+    this.submitted=true
+    if (this.formGroup.invalid) {
+      return;
+    }
     const r = this.formGroup.get('red').value.toString(16).padStart(2, '0').toUpperCase();
     const g = this.formGroup.get('green').value.toString(16).padStart(2, '0').toUpperCase();
     const b = this.formGroup.get('blue').value.toString(16).padStart(2, '0').toUpperCase();
