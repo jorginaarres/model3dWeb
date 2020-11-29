@@ -13,32 +13,56 @@
         <mat-label>R</mat-label>
         <input formControlName="red" type="number" matInput>
         <mat-hint>0-255</mat-hint>
+        <div *ngIf="submitted && f.red.errors">
+          <mat-error *ngIf="f.red.errors.min">Min value 0</mat-error>
+          <mat-error *ngIf="f.red.errors.max">Max value 255</mat-error>
+        </div>
       </mat-form-field>
       <mat-form-field color="accent" fxFlexOffset="5" fxFlex="30" appearance="fill">
         <mat-label>G</mat-label>
         <input formControlName="green" type="number" matInput>
         <mat-hint>0-255</mat-hint>
+        <div *ngIf="submitted && f.green.errors">
+          <mat-error *ngIf="f.green.errors.min">Min value 0</mat-error>
+          <mat-error *ngIf="f.green.errors.max">Max value 255</mat-error>
+        </div>
       </mat-form-field>
       <mat-form-field color="accent" fxFlexOffset="5"  fxFlex="30" appearance="fill">
         <mat-label>B</mat-label>
         <input formControlName="blue" type="number" matInput>
         <mat-hint>0-255</mat-hint>
+        <div *ngIf="submitted && f.blue.errors">
+          <mat-error *ngIf="f.blue.errors.min">Min value 0</mat-error>
+          <mat-error *ngIf="f.blue.errors.max">Max value 255</mat-error>
+        </div>
       </mat-form-field>
     </div>
     <div fxLayout="row">
       <mat-form-field color="accent" fxFlex="30" appearance="fill">
         <mat-label>Scale X</mat-label>
         <input type="number" step="0.1" formControlName="scaleX" matInput>
+        <div *ngIf="submitted && f.scaleX.errors">
+          <mat-error *ngIf="f.scaleX.errors.min">Min value 0</mat-error>
+          <mat-error *ngIf="f.scaleX.errors.max">Max value 4</mat-error>
+        </div>
         <mat-hint>0-10</mat-hint>
       </mat-form-field>
       <mat-form-field color="accent" fxFlexOffset="5" fxFlex="30" appearance="fill">
         <mat-label>Scale Y</mat-label>
         <input type="number" step="0.1" formControlName="scaleY" matInput>
+        <div *ngIf="submitted && f.scaleY.errors">
+          <mat-error *ngIf="f.scaleY.errors.min">Min value 0</mat-error>
+          <mat-error *ngIf="f.scaleY.errors.max">Max value 4</mat-error>
+        </div>
         <mat-hint>0-10</mat-hint>
       </mat-form-field>
       <mat-form-field color="accent" fxFlexOffset="5" fxFlex="30" appearance="fill">
         <mat-label>Scale Z</mat-label>
         <input type="number" step="0.1" formControlName="scaleZ" matInput>
+        <div *ngIf="submitted && f.scaleZ.errors">
+          <mat-error *ngIf="f.scaleZ.errors.min">Min value 0</mat-error>
+          <mat-error *ngIf="f.scaleZ.errors.max">Max value 4</mat-error>
+        </div>
         <mat-hint>0-10</mat-hint>
       </mat-form-field>
     </div>
@@ -46,33 +70,57 @@
       <mat-form-field color="accent" fxFlex="30" appearance="fill">
         <mat-label>Rotate X</mat-label>
         <input type="number" step="0.1" formControlName="rotateX" matInput>
-        <mat-hint>0-10</mat-hint>
+        <div *ngIf="submitted && f.rotateX.errors">
+          <mat-error *ngIf="f.rotateX.errors.min">Min value 0</mat-error>
+          <mat-error *ngIf="f.rotateX.errors.max">Max value 360</mat-error>
+        </div>
+        <mat-hint>0-360</mat-hint>
       </mat-form-field>
       <mat-form-field color="accent" fxFlexOffset="5" fxFlex="30" appearance="fill">
         <mat-label>Rotate Y</mat-label>
         <input type="number" step="0.1" formControlName="rotateY" matInput>
-        <mat-hint>0-10</mat-hint>
+        <div *ngIf="submitted && f.rotateY.errors">
+          <mat-error *ngIf="f.rotateY.errors.min">Min value 0</mat-error>
+          <mat-error *ngIf="f.rotateY.errors.max">Max value 360</mat-error>
+        </div>
+        <mat-hint>0-360</mat-hint>
       </mat-form-field>
       <mat-form-field color="accent" fxFlexOffset="5" fxFlex="30" appearance="fill">
         <mat-label>Rotate Z</mat-label>
         <input type="number" step="0.1" formControlName="rotateZ" matInput>
-        <mat-hint>0-10</mat-hint>
+        <div *ngIf="submitted && f.rotateZ.errors">
+          <mat-error *ngIf="f.rotateZ.errors.min">Min value 0</mat-error>
+          <mat-error *ngIf="f.rotateZ.errors.max">Max value 360</mat-error>
+        </div>
+        <mat-hint>0-360</mat-hint>
       </mat-form-field>
     </div>
     <div fxLayout="row">
       <mat-form-field color="accent" fxFlex="30" appearance="fill">
         <mat-label>Position X</mat-label>
         <input type="number" step="0.1" formControlName="translateX" matInput>
+        <div *ngIf="submitted && f.translateX.errors">
+          <mat-error *ngIf="f.translateX.errors.min">Min value 0</mat-error>
+          <mat-error *ngIf="f.translateX.errors.max">Max value 10</mat-error>
+        </div>
         <mat-hint>0-10</mat-hint>
       </mat-form-field>
       <mat-form-field color="accent" fxFlexOffset="5" fxFlex="30" appearance="fill">
         <mat-label>Position Y</mat-label>
         <input type="number" step="0.1" formControlName="translateY" matInput>
+        <div *ngIf="submitted && f.translateY.errors">
+          <mat-error *ngIf="f.translateY.errors.min">Min value 0</mat-error>
+          <mat-error *ngIf="f.translateY.errors.max">Max value 10</mat-error>
+        </div>
         <mat-hint>0-10</mat-hint>
       </mat-form-field>
       <mat-form-field color="accent" fxFlexOffset="5" fxFlex="30" appearance="fill">
         <mat-label>Position Z</mat-label>
         <input type="number" step="0.1" formControlName="translateZ" matInput>
+        <div *ngIf="submitted && f.translateZ.errors">
+          <mat-error *ngIf="f.translateZ.errors.min">Min value 0</mat-error>
+          <mat-error *ngIf="f.translateZ.errors.max">Max value 10</mat-error>
+        </div>
         <mat-hint>0-10</mat-hint>
       </mat-form-field>
     </div>
