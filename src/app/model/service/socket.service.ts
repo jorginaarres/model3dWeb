@@ -1,18 +1,17 @@
+import { Injectable } from '@angular/core';
 import {Socket} from 'ngx-socket-io';
-import {Injectable} from '@angular/core';
 import {ModelConfiguration} from '../modelConfiguration';
+import {Observable} from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class SocketService {
+  constructor(private socket: Socket) { }
 
-  config = this.socket.fromEvent<ModelConfiguration>('cat_configuration');
-
-  constructor(private socket: Socket) {
+  sendConfiguarion(configuration: ModelConfiguration): void {
+    this.socket.emit('cat_configuration', configuration);
   }
 
-  setConfiguration(config: ModelConfiguration): void {
-    this.socket.emit('cat_configuration', config);
+  getConfiguration(): Observable<ModelConfiguration> {
+    return this.socket.fromEvent('cat_configuration');
   }
 }

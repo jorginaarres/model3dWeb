@@ -14,7 +14,7 @@ export class UiComponent implements OnInit {
 
   selected: any;
   formGroup: any;
-  submitted=false; //Avoids checking null values on the form
+  submitted = false;
 
   models: any[] = [
     {name: 'Cat', path: '../../assets/cat.stl'},
@@ -39,36 +39,36 @@ export class UiComponent implements OnInit {
       translateZ: 0,
     };
     this.engServ.setConfiguration(modelConfiguration);
-    this.socketService.setConfiguration(modelConfiguration);
+    this.socketService.sendConfiguarion(modelConfiguration);
     this.changeModel('../../assets/cat.stl');
   }
 
   changeModel(model: any): void {
     this.formGroup = this.formBuilder.group({
       model: ['../../assets/cat.stl', [Validators.required]],
-      red: [0, [Validators.required,Validators.min(0),Validators.max(255)]],
-      green: [255, [Validators.required,Validators.min(0),Validators.max(255)]],
-      blue: [0, [Validators.required,Validators.min(0),Validators.max(255)]],
-      scaleX: [1, [Validators.required,Validators.min(0),Validators.max(4)]],
-      scaleY: [1, [Validators.required,Validators.min(0),Validators.max(4)]],
-      scaleZ: [1, [Validators.required,Validators.min(0),Validators.max(4)]],
-      rotateX: [0, [Validators.required,Validators.min(0),Validators.max(360)]],
-      rotateY: [0, [Validators.required,Validators.min(0),Validators.max(360)]],
-      rotateZ: [0, [Validators.required,Validators.min(0),Validators.max(360)]],
-      translateX: [0, [Validators.required,Validators.min(0),Validators.max(10)]],
-      translateY: [0, [Validators.required,Validators.min(0),Validators.max(10)]],
-      translateZ: [0, [Validators.required,Validators.min(0),Validators.max(10)]]
+      red: [0, [Validators.required, Validators.min(0), Validators.max(255)]],
+      green: [255, [Validators.required, Validators.min(0), Validators.max(255)]],
+      blue: [0, [Validators.required, Validators.min(0), Validators.max(255)]],
+      scaleX: [1, [Validators.required, Validators.min(0), Validators.max(4)]],
+      scaleY: [1, [Validators.required, Validators.min(0), Validators.max(4)]],
+      scaleZ: [1, [Validators.required, Validators.min(0), Validators.max(4)]],
+      rotateX: [0, [Validators.required, Validators.min(0), Validators.max(360)]],
+      rotateY: [0, [Validators.required, Validators.min(0), Validators.max(360)]],
+      rotateZ: [0, [Validators.required, Validators.min(0), Validators.max(360)]],
+      translateX: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
+      translateY: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
+      translateZ: [0, [Validators.required, Validators.min(0), Validators.max(10)]]
     });
 
     this.engServ.changeModel(model);
   }
 
-  get getFormGroupControls() {
+  get getFormGroupControls(): any {
     return this.formGroup.controls;
   }
 
   submit(): void {
-    this.submitted=true
+    this.submitted = true;
     if (this.formGroup.invalid) {
       return;
     }
@@ -100,7 +100,13 @@ export class UiComponent implements OnInit {
       translateY: newTranslateYValue,
       translateZ: newTranslateZValue,
     };
-    this.socketService.setConfiguration(modelConfiguration);
+    this.socketService.sendConfiguarion(modelConfiguration);
+    const obs = this.socketService.getConfiguration().subscribe((data: any) => {
+      console.log('getConfiguration data: ' + data);
+    },
+      (error: any) => {
+      console.log('getConfiguration error: ' + error);
+    });
     this.engServ.updateModelConfiguration(modelConfiguration);
   }
 }

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EngineComponent } from './model/engine/engine.component';
@@ -20,7 +19,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule, MAT_PROGRESS_SPINNER_DEFAULT_OPTIONS} from '@angular/material/progress-spinner';
 
-const config: SocketIoConfig = { url: 'http://hackeps.salmeronmoya.com:80', options: {transports: ['websocket']} };
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 
 @NgModule({
